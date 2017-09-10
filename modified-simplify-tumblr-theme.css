@@ -735,6 +735,10 @@
 			#posts footer .info .date {
 				display: inline;
 			}
+
+			.quote h3:before {
+				content: '';
+			}
 		}
 		
 		@media only screen and (max-width: 720px) {
