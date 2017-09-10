@@ -11,3 +11,7 @@ A modified version of the [Simplify Tumblr Theme](https://www.tumblr.com/theme/3
 * Quote background is not shown if screen has a width less than 720px.
 * Removed menu.
 * Added description in header.
+
+## Preview
+
+Click [here](https://rgaquino.tumblr.com) for a preview of this Tumblr theme.
