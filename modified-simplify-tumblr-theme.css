@@ -35,7 +35,7 @@
 		TYPOGRAPHY
 		********************/
 		
-		body, .quote h3 {
+		body, .quote h3:before {
 			font-family: 'Lora', Georgia, 'Times New Roman', Times, serif;
 			font-size: 1.125em; /* 18px */
 			line-height: 1.66666667em; /* 30px */
