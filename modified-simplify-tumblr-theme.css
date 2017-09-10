@@ -37,7 +37,7 @@
 		
 		body, .quote h3:before {
 			font-family: 'Lora', Georgia, 'Times New Roman', Times, serif;
-			font-size: 18px; /* 18px */
+			font-size: 1.125em; /* 18px */
 			line-height: 1.66666667em; /* 30px */
 			font-weight: 400;
 			-webkit-font-smoothing: antialiased;
