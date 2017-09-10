@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{Title} | {Description}{block:TagPage} - {Tag}{/block:TagPage}{block:SearchPage} - {SearchQuery}{/block:SearchPage}{block:PostSummary} - {PostSummary}{/block:PostSummary}</title>
+        <link rel="shortcut icon" href="{Favicon}">
+        <link rel="apple-touch-icon" href="{PortraitURL-128}" />
+        <link rel="alternate" type="application/rss+xml" href="{RSS}">
+        {block:Description}
+        <meta name="description" content="{MetaDescription}" />
+        {/block:Description}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {block:PostSummary}
+        <meta property="og:title" content="{PostSummary} - {Name}" />
+        {/block:PostSummary}
+        
+        <meta property="og:site_name" content="{Title}"/>
+        {block:IndexPage}
+        <meta property="og:title" content="{Title}"/>
+        <meta property="og:type" content="blog"/>
+        <meta property="og:description" content="{MetaDescription}"/>
+        <meta property="og:image" content="{PortraitURL-128}"/>
+        {/block:IndexPage}
+        {block:PermalinkPage}
+        <meta property="og:url" content="{Permalink}"/>
+        <meta property="og:type" content="article"/>
+        {block:Posts}
+        {block:Text}
+        {block:Title}<meta property="og:title" content="{PlaintextTitle}"/>{/block:Title}
+        <meta property="og:description" content="{PlaintextBody}"/>
+        {/block:Text}
+        {block:Photo}
+        <meta property="og:image" content="{PhotoURL-500}"/>
+        {block:Caption}<meta property="og:description" content="{PlaintextCaption}"/>{/block:Caption}
+        {/block:Photo}
+        {block:Photoset}
+        {block:Photos}
+        <meta property="og:image" content="{PhotoURL-500}"/>
+        {/block:Photos}
+        {block:Caption}<meta property="og:description" content="{PlaintextCaption}"/>{/block:Caption}
+        {/block:Photoset}
+        {block:Quote}
+        <meta property="og:title" content="{PlaintextQuote}"/>
+        <meta property="og:description" content="{PlaintextSource}"/>
+        <meta property="og:image" content="{PortraitURL-128}"/>
+        {/block:Quote}
+        {block:Link}
+        <meta property="og:title" content="{PlaintextName}"/>
+        <meta property="og:description" content="{PlaintextDescription}"/>
+        <meta property="og:image" content="{PortraitURL-128}"/>
+        {/block:Link}
+        {block:Chat}
+        <meta property="og:title" content="{PlaintextTitle}"/>
+        <meta property="og:description" content="{block:Lines}{block:Label}{Label}: {/block:Label}{Line} &bull; {/block:Lines}"/>
+        <meta property="og:image" content="{PortraitURL-128}"/>
+        {/block:Chat}
+        {block:Audio}
+        <meta property="og:title" content="{block:Artist}{Artist} - {/block:Artist}{block:TrackName}{TrackName}{/block:TrackName}"/>
+        <meta property="og:description" content="{PlaintextCaption}"/>
+        {block:AlbumArt}<meta property="og:image" content="{AlbumArtURL}"/>{/block:AlbumArt}
+        {/block:Audio}
+        {block:Video}
+        {block:Caption}<meta property="og:description" content="{PlaintextCaption}"/>{/block:Caption}
+        {/block:Video}
+        {block:Answer}
+        <meta property="og:title" content="{PlaintextQuestion}"/>
+        <meta property="og:description" content="{PlaintextAnswer}"/>
+        <meta property="og:image" content="{PortraitURL-128}"/>
+        {/block:Answer}
+        {/block:Posts}
+        {/block:PermalinkPage}
+        
+        <meta name="if:Portrait" content="1"/>
+        <meta name="if:Night Mode" content="1"/>
+        <meta name="text:Disqus Shortname" content=""/>
+        <meta name="text:Google Analytics ID" content=""/>
+        
+        <link rel="stylesheet" href="//static.tumblr.com/ypi9dez/E6umyc2p8/normalize.min.css">
+        <link rel="stylesheet" href="//static.tumblr.com/ypi9dez/tCNon2w7h/style.css">
+        {block:IfNotNightMode}<link rel="stylesheet" href="//static.tumblr.com/ypi9dez/rk6myhrlt/day.css">{/block:IfNotNightMode}
+        
+        {block:IfNightMode}
+        <script>
+            function getStylesheet() {
+                  var currentTime = new Date().getHours();
+                  if (0 <= currentTime&&currentTime < 6) {
+                   document.write("<link rel='stylesheet' href='//static.tumblr.com/ypi9dez/CQqn9vdw8/night.css' type='text/css'>");
+                  }
+                  if (6 <= currentTime&&currentTime < 20) {
+                   document.write("<link rel='stylesheet' href='//static.tumblr.com/ypi9dez/rk6myhrlt/day.css' type='text/css'>");
+                  }
+                  if (20 <= currentTime&&currentTime <= 24) {
+                   document.write("<link rel='stylesheet' href='//static.tumblr.com/ypi9dez/CQqn9vdw8/night.css' type='text/css'>");
+                  }
+            }
+            getStylesheet();
+        </script>
+        {/block:IfNightMode}
+        
+        <!-- STYLESHEET -->
+        <style type="text/css">
+            {CustomCSS}
+        </style>
+    </head>
+    <body>
+        
+        <header>
+            {block:IfPortrait}<a href="/" class="portrait"><img src="{PortraitURL-128}" alt="{Title}"></a>{/block:IfPortrait}
+            <h2 class="title"><a href="/">{Title}</a></h2>
+        </header>
+        
+        {block:TagPage}<h3 class="page-title">Posts tagged “{Tag}”</h3>{/block:TagPage}
+
+        <section id="posts">      
+            {block:Posts}
+                <article id={PostID} class="post">
+                {block:Text}
+                    <div class="text">
+                        <div class="post-date"><a href="{Permalink}">{ShortMonth} {DayOfMonthWithZero}<br>{Year}</a></div>
+                        {block:Title}
+                            <h3><a href="{Permalink}">{Title}</a></h3>
+                        {/block:Title}{Body}
+                    </div>
+                {/block:Text}
+                {block:Photo}
+                    <div class="photo">
+                        <div class="post-date"><a href="{Permalink}">{ShortMonth} {DayOfMonthWithZero}<br>{Year}</a></div>
+                        <figure>
+                            {LinkOpenTag}
+                                <img src="{PhotoURL-1280}" alt="{PhotoAlt}"/>
+                            {LinkCloseTag}
+                        </figure>
+                        {block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </div>
+                {/block:Photo}
+                {block:Panorama}
+                    <div class="panorama">
+                        <div class="post-date"><a href="{Permalink}">{ShortMonth} {DayOfMonthWithZero}<br>{Year}</a></div>
+                        <figure>
+                            {LinkOpenTag}
+                                <img src="{PhotoURL-Panorama}" alt="{PhotoAlt}"/>
+                            {LinkCloseTag}
+                        </figure>
+                        {block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </div>
+                {/block:Panorama}
+                {block:Photoset}
+                    <div class="photoset">
+                        <div class="post-date"><a href="{Permalink}">{ShortMonth} {DayOfMonthWithZero}<br>{Year}</a></div>
+                        <figure class="photo-slideshow" id="photoset_{PostID}" data-layout="{PhotosetLayout}">
+                            {block:Photos}
+                                <div class="photo-data">
+                                    <div class="pxu-photo">
+                                        <a class="tumblr-box" rel="post-{PostID}" href="{PhotoURL-HighRes}"><img alt="{PhotoAlt}" src="{PhotoURL-1280}" data-highres="{PhotoURL-HighRes}" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}"></a>
+                                    </div>
+                                </div>
+                            {/block:Photos}
+                        </figure>
+                        {block:Caption}
+                        <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </div>
+                {/block:Photoset}
+                {block:Quote}
+                    <div class="quote">
+                        <div class="post-date"><a href="{Permalink}">{ShortMonth} {DayOfMonthWithZero}<br>{Year}</a></div>
+                        <h3>{Quote}</h3>
+                        {block:Source}
+                            <div class="source">{Source}</div>
+                        {/block:Source}
+                    </div>
+                {/block:Quote}
+                {block:Link}
+                    <div class="link">
+                        <div class="post-date"><a href="{Permalink}">{ShortMonth} {DayOfMonthWithZero}<br>{Year}</a></div>
+                        <h3><a href="{URL}" class="link">{Name}</a></h3>
+                        {block:Description}
+                            <div class="description">{Description}</div>
+                        {/block:Description}
+                    </div>
+                {/block:Link}
+                {block:Chat}
+                    <div class="chat">
+                        <div class="post-date"><a href="{Permalink}">{ShortMonth} {DayOfMonthWithZero}<br>{Year}</a></div>
+                        {block:Title}
+                            <h3><a href="{Permalink}">{Title}</a></h3>
+                        {/block:Title}
+                        <ul class="chat">
+                            {block:Lines}
+                                <li class="{Alt} user_{UserNumber}">
+                                    {block:Label}
+                                        <span class="label">{Label}</span>
+                                    {/block:Label}{Line}
+                                </li>
+                            {/block:Lines}
+                        </ul>
+                    </div>
+                {/block:Chat}
+                {block:Video}
+                    <div class="video">
+                        <div class="post-date"><a href="{Permalink}">{ShortMonth} {DayOfMonthWithZero}<br>{Year}</a></div>
+                        <figure>{Video-500}</figure>
+                        {block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </div>
+                {/block:Video}
+                {block:Audio}
+                    <div class="audio">
+                        <div class="post-date"><a href="{Permalink}">{ShortMonth} {DayOfMonthWithZero}<br>{Year}</a></div>
+                        <figure>{AudioPlayerWhite}</figure>
+                        {block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </div>
+                {/block:Audio}
+                {block:Answer}
+                    <div class="answer">
+                        <div class="post-date"><a href="{Permalink}">{ShortMonth} {DayOfMonthWithZero}<br>{Year}</a></div>
+                        <h3><a href="{Permalink}">{Question}</a></h3>
+                        <div class="response"><strong class="label">Answer: </strong>{Answer}</div>
+                    </div>
+                {/block:Answer}
+                <footer class="clearfix">
+                    {block:HasTags}
+                    <ul class="tags clearfix">
+                        {block:Tags}<li class="tag"><a href="{TagURL}">{Tag}</a></li>{/block:Tags}
+                    </ul>
+                    {/block:HasTags}
+                    <ul class="info clearfix">
+                        <li class="date"><a href="{Permalink}">{Month} {DayOfMonthWithZero}, {Year}</a></li>
+                        {block:ContentSource}<li><a href="{SourceURL}">{lang:Source}: {block:SourceLogo}<img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />{/block:SourceLogo}{block:NoSourceLogo}{SourceTitle}{/block:NoSourceLogo}</a></li>{/block:ContentSource}
+                    </ul>
+                </footer>
+                </article>
+            {/block:Posts}
+        </section>
+        
+        <!-- PAGE NAVIGATION -->
+        {block:IndexPage}
+            {block:Pagination}
+            <nav class="page-nav clearfix">
+                {block:NextPage}
+                    <a href="{NextPage}" class="nav-next">&laquo; Older Posts</a>
+                {/block:NextPage}
+                {block:PreviousPage}
+                    | <a href="{PreviousPage}" class="nav-previous">Newer Posts &raquo;</a>
+                {/block:PreviousPage}
+            </nav>
+            {/block:Pagination}
+        {/block:IndexPage}
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script src="//static.tumblr.com/ypi9dez/NF5mye0bi/jquery.easing.1.3.min.js"></script>
+    
+        <!-- PHOTOSET -->
+        <script src="//static.tumblr.com/ypi9dez/yPqml8j24/imagesloaded.min.js"></script>
+        <script src="//static.tumblr.com/ypi9dez/ryAon1pff/pxuphotoset.js"></script>
+        <script>
+            $('.photo-slideshow').pxuPhotoset({
+                'ligthbox'  : true,
+                'highRes'   : true,
+                'rounded'   : 'corners',
+                'exif'      : false,
+                'captions'  : false,
+                'gutter'    : '15px',
+                'photoset'  : '.photo-slideshow',
+                'photoWrap' : '.photo-data',
+                'photo'     : '.pxu-photo'
+            }, function() {
+                $(this).animate({opacity:1});
+            });
+        </script>
+        
+        <!-- RESPONSIVE VIDEO -->
+        <script src="//static.tumblr.com/ypi9dez/JNamp6ag6/fluidvids.min.js"></script>
+        
+        <!-- DISQUS SCRIPT -->
+        {block:IfDisqusShortname}
+        <script>
+            (function() {
+                var links = document.getElementsByTagName('a');
+                var query = '?';
+                for(var i = 0; i < links.length; i++) {
+                    if(links[i].href.indexOf('#disqus_thread') >= 0) {
+                        query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+                    }
+                }
+                document.write('<script charset="utf-8" type="text/javascript" src="//disqus.com/forums/{text:Disqus Shortname}/get_num_replies.js' + query + '"></' + 'script>');
+            })();
+        </script>
+        {/block:IfDisqusShortname}
+        
+        <!-- GOOGLE ANALYTICS -->
+        {block:IfGoogleAnalyticsID}
+            <script>
+                var _gaq=[["_setAccount","{text:Google Analytics ID}"],["_trackPageview"]];
+                (function(d,t){
+                    var g=d.createElement(t), s=d.getElementsByTagName(t)[0];
+                    g.async=1;
+                    g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
+                    s.parentNode.insertBefore(g,s)
+                }(document,"script"));
+            </script>
+        {/block:IfGoogleAnalyticsID}
+        
+        <!-- POST NOTES -->
+        {block:PermalinkPage}
+            {block:PostNotes}
+                <section id="notes" class="clearfix">{PostNotes}</section>
+            {/block:PostNotes}
+        {/block:PermalinkPage}
+        <!-- END POST NOTES -->
+        
+        <!-- DISQUS COMMENTS -->
+        {block:PermalinkPagination}
+            {block:IfDisqusShortname}
+            <section id="disqus" class="clearfix">
+                <h4>Recent comments</h4>
+                <div id="disqus_thread"></div>
+                <script type="text/javascript" src="//disqus.com/forums/{text:Disqus Shortname}/embed.js"></script>
+                <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
+            </section>
+            {/block:IfDisqusShortname}
+        {/block:PermalinkPagination}
+        <!-- END DISQUS COMMENTS -->
+        
+    </body>
+</html>
