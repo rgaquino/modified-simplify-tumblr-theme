@@ -53,12 +53,23 @@ body, .post .quote h3:before {
 .post .quote h3:before {
     font-family: 'Lora', Georgia, 'Times New Roman', Times, serif;
     font-size: 9em;
+    content: '“';
+    font-weight: 700;
+    display: block;
+    position: absolute;
+    top: -110px;
+    left: -40px;
+    z-index: -1;
+    opacity: 0.25;
+    filter: alpha(opacity=25);
 }
 
 
 .post .quote h3 {
     font-family: 'Lora', Georgia, 'Times New Roman', Times, serif;
     font-size: 1.125em;
+    position: relative;
+    z-index: 10;
 }
 
 .navigation a, #posts footer, #links li a, .post-date a, #notes .notes li, .copyright, .copyright a {
@@ -274,25 +285,6 @@ POSTS
 .post .source {
     margin: 5% 0 0 7%;
     max-width: 650px;
-}
-
-.quote h3 {
-    position: relative;
-    z-index: 10;
-}
-
-.quote h3:before {
-    content: '“';
-    font-size: 1.125em; /* 18px */
-    line-height: 1.66666667em; /* 30px */
-    font-weight: 700;
-    display: block;
-    position: absolute;
-    top: -40px;
-    left: -40px;
-    z-index: -1;
-    opacity: 0.25;
-    filter: alpha(opacity=25);
 }
 
 .chat ul {
@@ -758,7 +750,7 @@ MOBILE
         display: inline;
     }
 
-    .quote h3:before {
+    .post .quote h3:before {
         content: '';
     }
 }
