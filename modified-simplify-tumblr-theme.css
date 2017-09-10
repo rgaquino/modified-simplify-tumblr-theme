@@ -261,7 +261,7 @@
 		
 		.quote h3:before {
 			content: '“';
-			font-size: 6em; /* 60px */
+			font-size: 1.125em; /* 60px */
 			line-height: 1em; /* 68px */
 			font-weight: 700;
 			display: block;
@@ -796,7 +796,7 @@
 			}
 			
 			h3 {
-				font-size: 1.125em; /* 18px */
+				font-size: 1.6666667em; /* 30px */
 				line-height: 1.2666667em; /* 38px */
 				margin-bottom: 15px !important;
 			}
